@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 加载热搜列表
     fetchTrendingList();
+    // 加载推荐列表
+    fetchRecommandedList();
     
     // 搜索表单提交
     document.getElementById('searchForm').addEventListener('submit', function(e) {
@@ -21,15 +23,41 @@ function fetchTrendingList() {
             
             data.forEach(item => {
                 const li = document.createElement('li');
-                li.textContent = item;
-                li.addEventListener('click', function() {
-                    document.getElementById('searchInput').value = item;
-                    performSearch(item);
+                li.innerHTML = `
+                    <a href="${item.url}" target="_blank">${item.topic}</a>
+                    <span class="hotness">(${item.hotness})</span>
+                `;
+                li.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // document.getElementById('searchInput').value = item.topic;
+                    // performSearch(item.topic);
+                    // 改为了 进入 url，不然要写太多了
+                    window.location.href = item.url;
                 });
                 trendingList.appendChild(li);
             });
         })
         .catch(error => console.error('Error fetching trending list:', error));
+}
+
+function fetchRecommandedList() {
+    fetch('/api/get_recommendations').then(response => response.json()).then(data => {
+        const recommendList = document.getElementById('recommendList');
+        recommendList.innerHTML = '';
+
+        data.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <a href="${item.url}" target="_blank">${item.topic}</a>
+            `;
+            li.addEventListener('click', function(e) {
+                e.preventDefault();
+                // document.getElementById('searchInput').value = item.topic;
+                window.location.href = item.url;
+            });
+            recommendList.appendChild(li);
+        });
+    }).catch(error => console.error('Error fetching recommandation list:', error));
 }
 
 function performSearch(query) {
