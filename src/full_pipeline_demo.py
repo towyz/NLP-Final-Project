@@ -319,6 +319,7 @@ if __name__ == '__main__':
             )
     
     with open(USER_IMAGE_PATH, 'r', encoding='utf-8') as f:
+            epoch = 0
             while True:
                 line = f.readline()
                 if not line:
@@ -352,4 +353,6 @@ if __name__ == '__main__':
                     num +=1
 
                 print(r"deepseek_wolckw_wolcf: " + str(sum_score/num))
-                break
+                epoch += 1
+                if epoch >= 10:
+                    break
