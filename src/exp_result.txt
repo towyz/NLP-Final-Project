@@ -1,0 +1,11 @@
+实验一，不使用langchain生成关键词，不使用langchain进行过滤：
+deepseek    
+6.58
+
+实验二，使用langchain生成关键词，不使用langchain进行过滤：
+deepseek    
+6.69
+
+实验三，使用langchain生成关键词，使用langchain进行过滤：
+deepseek    
+7.52
