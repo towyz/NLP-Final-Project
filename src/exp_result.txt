@@ -1,11 +1,11 @@
 实验一，不使用langchain生成关键词，不使用langchain进行过滤：
-deepseek    
-6.58
+deepseek    moonshot-v1-8k
+6.58        6.50
 
 实验二，使用langchain生成关键词，不使用langchain进行过滤：
-deepseek    
-6.69
+deepseek    moonshot-v1-8k
+6.69        6.50
 
 实验三，使用langchain生成关键词，使用langchain进行过滤：
-deepseek    
-7.52
+deepseek    moonshot-v1-8k
+7.52        7.0
